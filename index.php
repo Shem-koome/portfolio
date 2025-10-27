@@ -3,7 +3,7 @@
 <section class="hero">
   <div class="hero-content">
     <h1>Hi, I'm <span>Shem Koome</span></h1>
-    <h2>Full Stack Developer & Graphics Designer</h2>
+    <h2 id="typewriter"><b>Full Stack Developer & <br> Graphics Designer</b></h2>
     <p>I develop robust, end-to-end software solutions that align technology, design, and business goals.</p>
     <a href="projects.php" class="btn">View My Work</a>
   </div>
@@ -14,7 +14,9 @@
 
 <section class="about-preview">
   <h2>About Me</h2>
-  <p>I’m a developer passionate about merging functionality with creativity. My work blends web systems with design to deliver polished digital experiences.</p>
+  <p>I’m a full stack developer and creative designer passionate about building functional, 
+    visually compelling, and user-focused digital experiences. I merge design with technology
+     to craft web systems that are efficient, scalable, and leave a lasting impression</p>
   <a href="about.php" class="btn">Learn More</a>
 </section>
 

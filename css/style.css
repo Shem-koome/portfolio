@@ -1,24 +1,25 @@
 /* ========== ROOT COLOR PALETTE ========== */
 :root {
-  --primary: #011533;
-  --secondary: #004175;
-  --accent: #009688;
-  --success: #43A047;
-  --bg: #FFFFFF;
-  --surface: #F5F7FA;
-  --text-primary: #0A192F;
-  --text-secondary: #455A64;
+  --primary: #0A192F;        /* Dark navy blue - brand identity */
+  --secondary: #004AAD;      /* Medium blue for accents/links */
+  --accent: #00BFA6;         /* Teal accent - subtle contrast */
+  --success: #43A047;        /* Professional green */
+  --bg: #FFFFFF;             /* Light background */
+  --surface: #F5F7FA;        /* Light surface panels */
+  --text-primary: #0A192F;   /* Dark navy for light theme text */
+  --text-secondary: #000000; /* Medium black secondary text */
 }
 
+/* ========== DARK THEME ========== */
 [data-theme="dark"] {
-  --primary: #1565C0;
-  --secondary: #
-  --accent: #26A69A;
-  --success: #66BB6A;
-  --bg: #0A192F;
-  --surface: #112240;
-  --text-primary: #ffffff;
-  --text-secondary: #ffffff;
+  --primary: #0A192F;        /* Keep brand consistent */
+  --secondary: #0077FF;      /* Bright blue for highlights */
+  --accent: #00BFA6;         /* Teal accent still works well */
+  --success: #66BB6A;        /* Lively green for status/success */
+  --bg: #0A192F;             /* Deep navy background */
+  --surface: #112240;        /* Slightly lighter navy panels */
+  --text-primary: #FFFFFF;   /* Clean white text */
+  --text-secondary: #FFFFFF; /* No muted gray – all white text */
 }
 
 /* ========== GLOBAL STYLES ========== */
@@ -49,7 +50,7 @@ header {
 
 [data-theme="dark"] header {
   background: rgba(15, 23, 42, 0.7);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(235, 232, 232, 0.055);
 }
 
 .navbar {
@@ -83,20 +84,48 @@ header {
   text-decoration: none;
   color: var(--text-primary);
   font-weight: 500;
+  position: relative;
   transition: color 0.3s ease;
 }
 
+/* Remove color change on hover */
 .nav-links a:hover,
-.nav-links .active {
-  color: var(--primary);
+.nav-links a.active {
+  color: var(--text-primary);
 }
 
+/* Dark theme text color */
 [data-theme="dark"] .nav-links a {
   color: var(--text-secondary);
 }
 
-[data-theme="dark"] .nav-links a:hover {
-  color: var(--secondary);
+[data-theme="dark"] .nav-links a:hover,
+[data-theme="dark"] .nav-links a.active {
+  color: var(--text-secondary);
+}
+
+/* Underline animation */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+/* Show underline on hover and active */
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* Dark theme underline color */
+[data-theme="dark"] .nav-links a::after {
+  background: var(--secondary);
 }
 
 /* ========== HAMBURGER ========== */
@@ -215,7 +244,7 @@ header {
 
 /* Hero Image */
 .hero-image {
-  flex: 1 1 380px;
+  flex: 1 1 280px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -223,33 +252,83 @@ header {
   animation: fadeInRight 1.2s ease-in-out;
 }
 
+/* Glowing ring around image */
 .hero-image::before {
   content: "";
   position: absolute;
-  width: 380px;
-  height: 480px;
-  border-radius: 50% / 45%;
-  background: radial-gradient(circle at 30% 30%, var(--primary), var(--accent), var(--secondary));
-  filter: blur(70px);
-  opacity: 0.4;
-  animation: glowPulse 6s ease-in-out infinite alternate;
+  width: 380px; /* slightly larger than image */
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--primary) 20%, transparent 70%);
+  filter: blur(40px);
+  box-shadow: 0 0 80px var(--primary), 0 0 120px var(--accent);
+  opacity: 0.8;
+  animation: glowPulse 4s ease-in-out infinite alternate;
   z-index: 0;
 }
 
+/* Profile image */
 .hero-image img {
-  width: 80%;
-  max-width: 400px;
-  border-radius: 50% / 45%;
+  width: 300px;
+  height: 350px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
   z-index: 1;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  border: 4px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
+/* Hover effect */
 .hero-image img:hover {
   transform: scale(1.05);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
+/* Dark theme adjustment */
+[data-theme="dark"] .hero-image::before {
+  background: radial-gradient(circle, var(--accent) 20%, transparent 70%);
+  box-shadow: 0 0 90px var(--secondary), 0 0 130px var(--primary);
+  opacity: 0.9;
+}
+
+/* Glow pulse animation */
+@keyframes glowPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-image::before {
+    width: 280px;
+    height: 280px;
+  }
+
+  .hero-image img {
+    width: 220px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image::before {
+    width: 220px;
+    height: 220px;
+  }
+
+  .hero-image img {
+    width: 160px;
+    height: 180px;
+  }
+}
 /* Hero Content */
 .hero-content {
   flex: 1 1 500px;
@@ -257,22 +336,50 @@ header {
   animation: fadeInLeft 1.2s ease-in-out;
 }
 
+/* Gradient text for h1 */
 .hero-content h1 {
-  font-size: 2.8rem;
-  font-weight: 700;
+  font-size: 3.8rem;
+  font-weight: 900;
   color: var(--text-primary);
   margin-bottom: 12px;
+  line-height: 1.2;
 }
 
 .hero-content h1 span {
-  color: var(--primary);
+  background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 6s linear infinite;
 }
 
+@keyframes gradientShift {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
+}
+
+/* Typewriter effect for h2 */
 .hero-content h2 {
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 2.5rem;
+  font-weight: 800;
   color: var(--text-secondary);
   margin-bottom: 20px;
+  overflow: hidden;
+  border-right: 3px solid var(--primary);
+  white-space: pre-wrap; /* allow line breaks */
+  width: 0;
+  display: inline-block;
+  animation: typing 5s steps(40, end) forwards, blink 0.75s step-end infinite;
+}
+
+/* Typing animation */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
 }
 
 .hero-content p {
@@ -284,7 +391,7 @@ header {
 }
 
 .hero .btn {
-  background: var(--primary);
+  background: var(--secondary);
   color: #fff;
   padding: 12px 28px;
   border-radius: 30px;
