@@ -124,3 +124,17 @@ if (themeToggle && !themeToggle.dataset.listenerAttached) {
 
   startTyping();
 });
+  // ========== JS SCROLL ==========
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".timeline-item.animate");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  items.forEach(item => observer.observe(item));
+});
