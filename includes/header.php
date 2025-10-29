@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shem Koome | Full Stack Developer & Designer</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
@@ -22,8 +23,7 @@
       <li><a href="index.php" class="<?php if(basename($_SERVER['PHP_SELF'])=='index.php'){echo 'active';} ?>">Home</a></li>
       <li><a href="about.php" class="<?php if(basename($_SERVER['PHP_SELF'])=='about.php'){echo 'active';} ?>">About</a></li>
       <li><a href="projects.php" class="<?php if(basename($_SERVER['PHP_SELF'])=='projects.php'){echo 'active';} ?>">Projects</a></li>
-      <li><a href="design.php" class="<?php if(basename($_SERVER['PHP_SELF'])=='design.php'){echo 'active';} ?>">Design</a></li>
-      <li><a href="contact.php" class="<?php if(basename($_SERVER['PHP_SELF'])=='contact.php'){echo 'active';} ?>">Contact</a></li>
+      <!-- <li><a href="contact.php" class="<?php if(basename($_SERVER['PHP_SELF'])=='contact.php'){echo 'active';} ?>">Contact</a></li> -->
     </ul>
 
     <!-- Theme Toggle -->

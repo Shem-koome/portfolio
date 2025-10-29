@@ -138,3 +138,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
   items.forEach(item => observer.observe(item));
 });
+
+  // ===== FILTER LOGIC =====//
+document.addEventListener("DOMContentLoaded", () => {
+  // ===== FILTER LOGIC =====
+const filterButtons = document.querySelectorAll(".filter-btn");
+const projectCards = document.querySelectorAll(".project-card");
+
+filterButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    filterButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const category = btn.dataset.filter;
+    projectCards.forEach(card => {
+      if (category === "all" || card.dataset.category === category) {
+        card.classList.remove("hide");
+      } else {
+        card.classList.add("hide");
+      }
+    });
+  });
+});
+// ===== MODAL & CAROUSEL LOGIC =====//
+document.querySelectorAll(".view-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const modalId = btn.dataset.modal;
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+
+    modal.style.display = "block";
+
+    const images = modal.querySelectorAll(".carousel img");
+    let index = 0;
+    images.forEach(img => img.classList.remove("active"));
+    images[index].classList.add("active");
+
+    const interval = setInterval(() => {
+      images[index].classList.remove("active");
+      index = (index + 1) % images.length;
+      images[index].classList.add("active");
+    }, 2500); // 2.5s per image
+
+    // Close button
+    modal.querySelector(".close").onclick = () => {
+      modal.style.display = "none";
+      clearInterval(interval);
+    };
+
+    // Click outside modal
+    modal.onclick = (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+        clearInterval(interval);
+      }
+    };
+  });
+});
+});
